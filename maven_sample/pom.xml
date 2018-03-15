@@ -8,7 +8,7 @@
     <artifactId>maven_sample</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>Maven_Sample</name>
+    <name>MavenSample</name>
     <description>My first sample for maven</description>
 
     <developers>
@@ -96,12 +96,15 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <proguardInclude>proguard.conf</proguardInclude>
-                    <archive>
-                        <manifest>
-                            <mainClass>era.javalearn.mvs.Main</mainClass>
-                        </manifest>
-                    </archive>
+                    <obfuscate>true</obfuscate>
+                    <outjar>MavenSample-proguard.jar</outjar>
+                    <options>
+                        <option>-keep public class era.javalearn.mvs.Main {public static void main (java.lang.String[]);}</option>
+                        <option>-dontwarn</option>
+                    </options>
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                    </libs>
                 </configuration>
             </plugin>
         </plugins>
