@@ -22,6 +22,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <com.google.guava.version>23.0</com.google.guava.version>
+        <com.github.proguard.version>2.0.14</com.github.proguard.version>
     </properties>
 
     <dependencies>
@@ -29,6 +30,12 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${com.google.guava.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.wvengen/proguard-maven-plugin -->
+        <dependency>
+            <groupId>com.github.wvengen</groupId>
+            <artifactId>proguard-maven-plugin</artifactId>
+            <version>${com.github.proguard.version}</version>
         </dependency>
     </dependencies>
 
@@ -67,6 +74,29 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>era.javalearn.mvs.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>${com.github.proguard.version}</version>
+                <executions>
+                    <execution>
+                        <id>m_proguard_plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardInclude>proguard.conf</proguardInclude>
                     <archive>
                         <manifest>
                             <mainClass>era.javalearn.mvs.Main</mainClass>
