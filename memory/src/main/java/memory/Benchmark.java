@@ -7,7 +7,7 @@ public class Benchmark {
     private final int size;
 
     Benchmark(){
-        size = 10*1000*1000;
+        size = 5_000_000;
     }
 
     Benchmark(int size){
