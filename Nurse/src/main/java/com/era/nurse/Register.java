@@ -65,4 +65,26 @@ public class Register {
             }
         }
     }
+
+    public Infirmary createInfirmary(){
+        Infirmary infirmary = new Infirmary();
+
+        register.forEach((thingName, thingObject) -> {
+            Note note = new Note();
+            note.setName(thingName);
+            injectionsPlaces.keySet()
+                    .stream()
+                    .filter(field -> injectionsPlaces.get(field).getClass() == thingObject.getClass())
+                    .forEach(field -> {
+                        Injection injection = new Injection();
+                        injection.setName(field.getName());
+                        injection.setCure(field.getType().getName());
+                        note.getInjections().add(injection);
+                    });
+
+            infirmary.getNotes().add(note);
+        });
+
+        return infirmary;
+    }
 }

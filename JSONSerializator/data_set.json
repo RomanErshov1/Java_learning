@@ -1,0 +1,20 @@
+[
+  {
+    "age": 82,
+    "old": true,
+    "name": "Stepan",
+    "wallet": {
+      "name": "MyWallet",
+      "money": 20010
+    }
+  },
+  {
+    "age": 26,
+    "old": false,
+    "name": "Roma",
+    "wallet": {
+      "name": "MyWallet",
+      "money": 35000
+    }
+  }
+]
