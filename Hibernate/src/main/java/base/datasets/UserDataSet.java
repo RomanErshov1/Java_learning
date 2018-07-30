@@ -1,11 +1,12 @@
 package base.datasets;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserDataSet extends DataSet {
 
     @Column(name = "name")
@@ -17,19 +18,24 @@ public class UserDataSet extends DataSet {
     @OneToOne(cascade = CascadeType.ALL)
     private AddressDataSet address;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PhoneDataSet> phoneNumbers = new HashSet<>();
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PhoneDataSet> phoneNumbers = new ArrayList<>();
 
     public UserDataSet(){
 
     }
 
-    public UserDataSet(String name, int age, AddressDataSet address, Set<PhoneDataSet> phones) {
+    public UserDataSet(String name, int age, AddressDataSet address, PhoneDataSet ... phones) {
         this.setId(-1);
         this.name = name;
         this.age = age;
         this.address = address;
-        this.phoneNumbers = phones;
+        List<PhoneDataSet> userPhones = Arrays.asList(phones);
+        this.setPhoneNumbers(userPhones);
+        userPhones.forEach(phoneDataSet -> phoneDataSet.setUser(this));
     }
 
     public String getName() {
@@ -56,11 +62,11 @@ public class UserDataSet extends DataSet {
         this.address = address;
     }
 
-    public Set<PhoneDataSet> getPhoneNumbers() {
+    public List<PhoneDataSet> getPhoneNumbers() {
         return phoneNumbers;
     }
 
-    public void setPhoneNumbers(Set<PhoneDataSet> phoneNumbers) {
+    public void setPhoneNumbers(List<PhoneDataSet> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
 

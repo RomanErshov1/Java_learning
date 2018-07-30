@@ -6,9 +6,8 @@ import base.datasets.PhoneDataSet;
 import base.datasets.UserDataSet;
 import dbService.DBServiceImpl;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class Main {
     public static void main(String[] args){
@@ -17,15 +16,14 @@ public class Main {
         String status = dbService.getLocalStatus();
         System.out.println("Status: " + status);
 
-        Set<PhoneDataSet> roma_phones = new HashSet<>();
-        roma_phones.add(new PhoneDataSet("+79026863591"));
-        roma_phones.add(new PhoneDataSet("+79524426980"));
-        Set<PhoneDataSet> sasha_phones = new HashSet<>();
-        sasha_phones.add(new PhoneDataSet("+79050112636"));
-        sasha_phones.add(new PhoneDataSet("+79151576325"));
-        sasha_phones.add(new PhoneDataSet("+79084783148"));
-        dbService.save(new UserDataSet("Roma", 27, new AddressDataSet("Lukina"), roma_phones));
-        dbService.save(new UserDataSet("Sasha", 36, new AddressDataSet("Gagarina"), sasha_phones));
+
+        dbService.save(new UserDataSet("Roma", 27, new AddressDataSet("Lukina"),
+                new PhoneDataSet("+79026863591"),
+                new PhoneDataSet("+79524426980")));
+        dbService.save(new UserDataSet("Sasha", 36, new AddressDataSet("Gagarina"),
+                new PhoneDataSet("+79050112636"),
+                new PhoneDataSet("+79151576325"),
+                new PhoneDataSet("+79084783148")));
 
         UserDataSet dataSet = dbService.read(1);
         System.out.println(dataSet);

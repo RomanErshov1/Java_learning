@@ -1,8 +1,6 @@
 package base.datasets;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "phone")
@@ -10,6 +8,10 @@ public class PhoneDataSet extends DataSet {
 
     @Column (name = "phone_number")
     private String number;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserDataSet user;
 
     public PhoneDataSet() {
     }
@@ -24,6 +26,10 @@ public class PhoneDataSet extends DataSet {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public void setUser(UserDataSet user) {
+        this.user = user;
     }
 
     @Override
