@@ -18,8 +18,7 @@ public class Contact extends DataSet{
     @JoinColumn(name = "city_code_id")
     private CityCode cityCode;
 
-    @ManyToMany(    fetch = FetchType.LAZY,
-                    cascade = CascadeType.ALL)
+    @ManyToMany(    fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_x_ref", joinColumns = {
             @JoinColumn(name = "contact_id")
     }, inverseJoinColumns = {

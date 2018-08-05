@@ -9,6 +9,7 @@ import com.era.phonebook.dbService.DBServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +26,24 @@ public class PhonebookApplication {
 
         testContact(dbService);
 
+        List<Contact> contacts = dbService.findContactsByName("Roma");
+        contacts.forEach(System.out::println);
+
+        contacts = dbService.findContactsByCity("Saint");
+        contacts.forEach(System.out::println);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date birthday = formatter.parse("28-05-1982");
+            contacts = dbService.findContactsByBirthday(birthday);
+            contacts.forEach(System.out::println);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        List<Person> persons = dbService.findPersonsByPhoneNumber("+7(831)2796160");
+        persons.forEach(System.out::println);
+
         dbService.shutdown();
     }
 
@@ -40,12 +59,13 @@ public class PhonebookApplication {
         Contact contact = new Contact("+79050112636", "mobile", null, personList);
         dbService.saveContact(contact);
         contact.setCityCode(dbService.readCity(3));
+        contact.setType("city");
         contact.setPhoneNumber("+7(812)1572498");
         dbService.editContact(contact);
 
         personList = new ArrayList<>();
         personList.add(dbService.readPerson(1));
-        dbService.saveContact(new Contact("+7(831)270-61-00", "city", city_one, personList));
+        dbService.saveContact(new Contact("+7(831)2706100", "city", city_one, personList));
 
         contact = new Contact("+79105874570", "mobile", null, personList);
         dbService.saveContact(contact);

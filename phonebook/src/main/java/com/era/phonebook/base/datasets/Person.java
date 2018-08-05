@@ -19,7 +19,7 @@ public class Person extends DataSet {
     @Column(name = "memo")
     private String memo;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persons")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "persons")
     private List<Contact> contacts = new ArrayList<>();
 
     public Person(){}

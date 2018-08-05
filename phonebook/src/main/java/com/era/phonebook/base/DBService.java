@@ -4,7 +4,7 @@ import com.era.phonebook.base.datasets.CityCode;
 import com.era.phonebook.base.datasets.Contact;
 import com.era.phonebook.base.datasets.Person;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface DBService {
@@ -39,7 +39,7 @@ public interface DBService {
 
     List<Contact> findContactsByCity(String nameCity);
 
-    List<Contact> findContactsByBirthday(LocalDate birthday);
+    List<Contact> findContactsByBirthday(Date birthday);
 
     List<Person> findPersonsByPhoneNumber(String phoneNumber);
 

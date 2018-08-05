@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
@@ -150,22 +151,34 @@ public class DBServiceImpl implements DBService {
 
     @Override
     public List<Contact> findContactsByName(String name) {
-        return null;
+        return runInSession(session -> {
+            ContactDAO contactDAO = new ContactDAO(session);
+            return contactDAO.findByName(name);
+        });
     }
 
     @Override
     public List<Contact> findContactsByCity(String nameCity) {
-        return null;
+        return runInSession(session -> {
+            ContactDAO contactDAO = new ContactDAO(session);
+            return contactDAO.findByCity(nameCity);
+        });
     }
 
     @Override
-    public List<Contact> findContactsByBirthday(LocalDate birthday) {
-        return null;
+    public List<Contact> findContactsByBirthday(Date birthday) {
+        return runInSession(session -> {
+            ContactDAO contactDAO = new ContactDAO(session);
+            return contactDAO.findByBirthday(birthday);
+        });
     }
 
     @Override
     public List<Person> findPersonsByPhoneNumber(String phoneNumber) {
-        return null;
+        return runInSession(session -> {
+            PersonDAO personDAO = new PersonDAO(session);
+            return personDAO.findByPhoneNumber(phoneNumber);
+        });
     }
 
     @Override
