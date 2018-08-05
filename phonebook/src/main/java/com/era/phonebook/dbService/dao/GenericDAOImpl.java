@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public abstract class GenericDAOImpl<T> implements DAO<T> {
-    protected Session session;
+    Session session;
 
-    public GenericDAOImpl(Session session) {
+    GenericDAOImpl(Session session) {
         this.session = session;
     }
 
