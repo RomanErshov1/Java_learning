@@ -34,6 +34,9 @@ public class Main {
         List<UserDataSet> dataSets = dbService.readAll();
         dataSets.forEach(System.out::println);
 
+        dataSet = dbService.read(2);
+        System.out.println(dataSet);
+
         dbService.shutdown();
     }
 }
