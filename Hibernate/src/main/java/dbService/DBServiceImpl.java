@@ -92,6 +92,21 @@ public class DBServiceImpl implements DBService {
         sessionFactory.close();
     }
 
+    @Override
+    public int getCacheSize() {
+        return cache.getSize();
+    }
+
+    @Override
+    public int getCacheHit() {
+        return cache.getHitCount();
+    }
+
+    @Override
+    public int getCahceMiss() {
+        return cache.getMissCount();
+    }
+
     private <R> R runInSession(Function<Session, R> function){
         try (Session session = sessionFactory.openSession()){
             Transaction transaction = session.beginTransaction();

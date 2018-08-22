@@ -16,4 +16,10 @@ public interface DBService {
     List<UserDataSet> readAll();
 
     void shutdown();
+
+    int getCacheSize();
+
+    int getCacheHit();
+
+    int getCahceMiss();
 }
