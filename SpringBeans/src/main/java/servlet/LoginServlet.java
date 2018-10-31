@@ -17,13 +17,8 @@ public class LoginServlet extends HttpServlet {
     private static final String LOGIN_PARAMETER_NAME = "login";
     private static final String PASSWORD_PARAMETER_NAME = "password";
 
-    private String login;
-    private String password;
-
-    public LoginServlet(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+    private String login = "";
+    private String password = "";
 
     private static String getPage(String login, String password) throws IOException {
         Map<String, Object> pageVariables = new HashMap<>();
@@ -61,6 +56,6 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_OK);
 
-        if (login.equals("admin") && password.equals("admin")) resp.sendRedirect("cache");
+        if (login.equals("admin") && password.equals("admin")) resp.sendRedirect("/tml/cache");
     }
 }

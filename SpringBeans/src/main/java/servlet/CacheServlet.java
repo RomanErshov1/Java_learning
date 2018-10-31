@@ -17,10 +17,6 @@ public class CacheServlet extends HttpServlet {
 
     private CacheInfo info;
 
-    public CacheServlet(CacheInfo info) {
-        this.info = info;
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
