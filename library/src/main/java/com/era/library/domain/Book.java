@@ -1,23 +1,29 @@
 package com.era.library.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Book {
-    private final int id;
+    private final Long id;
     private final String caption;
     private final int year;
     private final Genre genre;
-    private final List<Author> authors;
+    private final Set<AuthorRef> authors = new HashSet<>();
 
-    public Book(int id, String caption, int year, Genre genre, List<Author> authors) {
+    public void addAuthor(Author author){
+        this.authors.add(new AuthorRef(author.getId()));
+    }
+
+    public Book(Long id, String caption, int year, Genre genre) {
         this.id = id;
         this.caption = caption;
         this.year = year;
         this.genre = genre;
-        this.authors = authors;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -33,8 +39,10 @@ public class Book {
         return genre;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
+    public Set<Long> getAuthors() {
+        return this.authors.stream()
+                .map(AuthorRef::getAuthor)
+                .collect(Collectors.toSet());
     }
 
     @Override

@@ -1,15 +1,15 @@
 package com.era.library.domain;
 
 public class Genre {
-    private final int id;
+    private final Long id;
     private final String genreName;
 
-    public Genre(int id, String genreName) {
+    public Genre(Long id, String genreName) {
         this.id = id;
         this.genreName = genreName;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

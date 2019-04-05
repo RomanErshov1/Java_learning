@@ -3,7 +3,7 @@ package com.era.library.domain;
 import java.util.List;
 
 public class Author {
-    private final int id;
+    private final Long id;
     private final String name;
     private final String middleName;
     private final String surname;
@@ -12,7 +12,7 @@ public class Author {
 
     private final List<Book> books;
 
-    public Author(int id, String name, String middleName, String surname, int birthdayYear, int deathYear,
+    public Author(Long id, String name, String middleName, String surname, int birthdayYear, int deathYear,
                   List<Book> books) {
         this.id = id;
         this.name = name;
@@ -23,7 +23,7 @@ public class Author {
         this.books = books;
     }
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
 

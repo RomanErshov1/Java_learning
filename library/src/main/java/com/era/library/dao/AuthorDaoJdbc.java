@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,7 +18,13 @@ public class AuthorDaoJdbc implements AuthorDao {
     private static class AuthorMapper implements RowMapper<Author>{
         @Override
         public Author mapRow(ResultSet resultSet, int i) throws SQLException {
-            return null;
+            Long id = resultSet.getLong("id");
+            String name = resultSet.getString("author_name");
+            String middlename = resultSet.getString("author_middlename");
+            String surname = resultSet.getString("author_surname");
+            int birthday = resultSet.getInt("birthday_year");
+            int death = resultSet.getInt("death_year");
+            return new Author(id, name, middlename, surname, birthday, death, new ArrayList<>());
         }
     }
 
